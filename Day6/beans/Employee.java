@@ -1,27 +1,22 @@
 package com.hsbc.beans;
 
+import java.util.Objects;
 
-
-@SuppressWarnings("serial")
 public class Employee implements Comparable<Employee>{
 	private int id;
 	private String name;
 	private double salary;
-	private String department;
-	public Employee(int id, String name, double salary, String department) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.salary = salary;
-		this.department = department;
-	}
+	
+	
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", department=" + department + "]";
+	public Employee(int id, String name, double salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
 	}
 	public int getId() {
 		return id;
@@ -41,18 +36,13 @@ public class Employee implements Comparable<Employee>{
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
 	}
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+		return Objects.hash(id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -63,15 +53,12 @@ public class Employee implements Comparable<Employee>{
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (id != other.id)
-			return false;
-		return true;
+		return id == other.id;
 	}
 	@Override
-	public int compareTo(Employee emp) {
+	public int compareTo(Employee o) {
 		
-		int result= id-emp.id;
-		return result;
+		return Integer.compare(this.getId(), o.getId());
 	}
 	
 	
